@@ -1,7 +1,12 @@
 import { FiX, FiClipboard } from 'react-icons/fi';
 import './link-item.css';
 
-export function LinkItem({closeModal}){
+export function LinkItem({closeModal, content}){
+    async function copyLink  (){
+        await navigator.clipboard.writeText(content.link)
+        alert("URL copiada com sucesso!")
+    }
+
     return(
         <div className="modal-container">
             <div className="modal-header">
@@ -12,11 +17,11 @@ export function LinkItem({closeModal}){
             </div>
 
             <span>
-                https://youtube.com
+                {content.long_url}
             </span>
 
-            <button className="modal-link">
-                https://bit.ly/3214
+            <button className="modal-link" onClick={copyLink}>
+                {content.link}
                 <FiClipboard size={20} color="#FFF" />
             </button>
         </div>
